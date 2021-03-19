@@ -1,0 +1,15 @@
+/_output
+.cover
+zz_generated.openapi.go
+
+vendor
+
+# Vim-related files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*~
+*.un~
+Session.vim
+.netrwhist
+.idea
+*manifest-tool
