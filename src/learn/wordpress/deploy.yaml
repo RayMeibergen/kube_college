@@ -31,7 +31,10 @@ spec:
         # 以下、passwordを直打ちは本来アウトです
         # 後ほど、secretに置き換えます。
         - name: WORDPRESS_DB_PASSWORD
-          value: "password"
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secret
+              key: password
         ports:
         - containerPort: 80
           name: wordpress
