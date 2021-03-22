@@ -9,6 +9,7 @@ module "db" {
   instance_class    = "db.t2.large" # インスタンスタイプ
   allocated_storage = 5
 
+  # dbの情報
   name     = "demodb"
   username = "user"
   password = "password"
@@ -24,6 +25,7 @@ module "db" {
   monitoring_role_name = "shindexRDSMonitoringRole"
   create_monitoring_role = true
 
+  # このRDS用に作成したsgを適応
   vpc_security_group_ids = [aws_security_group.wordpress_db.id]
 
   tags = {
@@ -31,7 +33,7 @@ module "db" {
     Environment = "dev"
   }
 
-  # DB subnet group
+  # EKSと同じsubnetsを適応
   subnet_ids = module.vpc.private_subnets
 
   # DB parameter group
@@ -43,6 +45,7 @@ module "db" {
   # 削除保護機能
   deletion_protection = true
 
+  # これより下、どういう意味があるのかまだ理解していません
   parameters = [
     {
       name = "character_set_client"

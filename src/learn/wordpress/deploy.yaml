@@ -1,10 +1,11 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress-deploy
   labels:
     app: wordpress
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: wordpress
@@ -27,6 +28,8 @@ spec:
           value: "demodb"
         - name: WORDPRESS_DB_USER
           value: "user"
+        # 以下、passwordを直打ちは本来アウトです
+        # 後ほど、secretに置き換えます。
         - name: WORDPRESS_DB_PASSWORD
           value: "password"
         ports:
